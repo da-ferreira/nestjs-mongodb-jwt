@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   public async validateUser(jwtPayload: JwtPayload): Promise<User> {
-    const user = await this.usersModel.findOne({ _id: jwtPayload.userId });
+    const user = await this.usersModel.findById(jwtPayload.userId);
 
     if (!user) {
       throw new UnauthorizedException('User not found');
